@@ -1,0 +1,8 @@
+# Requisitos del proyecto
+# Para instalar, ejecuta: pip install -r requirements.txt
+
+click
+pytube
+pydub
+mutagen
+rich
