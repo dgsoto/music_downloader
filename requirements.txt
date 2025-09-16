@@ -6,3 +6,4 @@ pytube
 pydub
 mutagen
 rich
+pyfiglet
