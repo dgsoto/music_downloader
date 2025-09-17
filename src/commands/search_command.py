@@ -71,9 +71,10 @@ def search(query: str):
                 if provider.is_valid_url(download_url):
                     console.log(f"[bold green]Fuente identificada:[/bold green] {provider.get_source_name()}")
                     # Llama al comando download del otro archivo
-                    from ..cli import cli
-                    ctx = click.Context(cli)
-                    ctx.invoke(cli.commands['download'], urls=[download_url], output='./downloads')
+                    import commands.download_command
+
+                    ctx = click.get_current_context()
+                    ctx.invoke(commands.download_command.download, urls=[download_url], output='./downloads')
                     source_found = True
                     break
             if not source_found:

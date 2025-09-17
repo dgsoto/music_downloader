@@ -15,6 +15,7 @@ from sources.youtube import YouTubeSource
 
 console = Console()
 
+
 def get_providers():
     """Retorna una lista de todos los proveedores de descarga disponibles."""
     return [YouTubeSource(), SoundCloudSource()]
@@ -54,7 +55,7 @@ def download(urls: List[str], output: str):
     console.log(f"El directorio de descarga es: [bold green]{output_path.resolve()}[/bold green]")
     
     providers = get_providers()
-    
+
     for url in urls:
         console.print("-" * 40)
         source_found = False
@@ -63,8 +64,9 @@ def download(urls: List[str], output: str):
                 if provider.is_valid_url(url):
                     status.stop()
                     console.log(f"[bold green]Fuente identificada:[/bold green] {provider.get_source_name()}")
+                    print("XXX: ", provider, url, output_path)
                     files = provider.download(url, str(output_path))
-                    
+                    print("YYY: ", files)
                     for file_path in files:
                         metadata = id3_tagger.get_metadata_from_source(file_path)
                         if metadata:
